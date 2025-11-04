@@ -1,0 +1,62 @@
+{
+  "name": "Greyskull e150 Legacy Dev",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "args": {
+      "USERNAME": "vscode",
+      "USER_UID": "1000",
+      "USER_GID": "1000"
+    }
+  },
+  "remoteUser": "vscode",
+  "workspaceFolder": "/work",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/work,type=bind,consistency=cached",
+  "mounts": [
+    "source=/dev,target=/dev,type=bind"
+  ],
+  "runArgs": [
+    "--privileged",
+    "--cap-add=IPC_LOCK",
+    "--cap-add=SYS_ADMIN",
+    "--group-add=995",
+    "--security-opt=seccomp=unconfined",
+    "--device=/dev/tenstorrent0",
+    "--device=/dev/tenstorrent1"
+  ],
+  "containerEnv": {
+    "ARCH_NAME": "grayskull",
+    "TT_BACKEND_TIMEOUT": "3600"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python",
+        "python.terminal.activateEnvironment": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": ["-l"]
+          }
+        },
+        "C_Cpp.default.compilerPath": "/usr/bin/g++",
+        "C_Cpp.default.cppStandard": "c++17",
+        "files.watcherExclude": {
+          "**/build/**": true,
+          "**/.git/**": true
+        }
+      }
+    }
+  },
+  "postCreateCommand": "bash -lc 'source ~/.venv/bin/activate && pip install --upgrade pip wheel setuptools pytest pyyaml numpy'",
+  "forwardPorts": [],
+  "features": {}
+}

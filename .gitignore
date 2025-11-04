@@ -1,0 +1,53 @@
+# .gitignore for Tenstorrent Greyskull e150 Dev Environment
+
+# Build artifacts
+tt-budabackend/
+build/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+wheels/
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/*
+!.vscode/tasks.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Legacy artifacts (too large for git)
+tt_legacy_greyskull/
+*.fwbundle
+*.tar.gz
+*.whl
+
+# Test outputs
+test_results/
+*.out
+*.err
+scripts/test_results_*/
