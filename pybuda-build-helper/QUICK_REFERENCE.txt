@@ -1,0 +1,212 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║       PyBuda Build from Source - Quick Reference Card            ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────┐
+│ WHY BUILD FROM SOURCE?                                           │
+└──────────────────────────────────────────────────────────────────┘
+
+Problem: Pre-built PyBuda wheel has C++ ABI incompatibility
+  - Built against yaml-cpp 0.6, container has 0.7
+  - Error: undefined symbol: _ZN4YAML...
+
+Solution: Build from source to compile against container's exact libs
+  ✓ Matches yaml-cpp 0.7
+  ✓ Matches boost 1.74
+  ✓ Compatible with Wormhole B0
+  ✓ No more ABI issues
+
+┌──────────────────────────────────────────────────────────────────┐
+│ QUICK START (5 COMMANDS)                                         │
+└──────────────────────────────────────────────────────────────────┘
+
+On your local machine (worlock):
+
+1. Make scripts executable:
+   chmod +x *.sh
+
+2. Locate source code:
+   bash 1_locate_pybuda_source.sh
+
+3. Check environment:
+   bash 4_diagnose_build_environment.sh
+
+4. Build PyBuda:
+   bash 3_build_pybuda_from_source.sh
+
+5. Test it:
+   ssh baruch@192.168.1.158 'docker exec tt-e75-dev python -c "import pybuda; print(pybuda.__version__)"'
+
+Done! ✓
+
+┌──────────────────────────────────────────────────────────────────┐
+│ FILE REFERENCE                                                   │
+└──────────────────────────────────────────────────────────────────┘
+
+📄 BUILD_FROM_SOURCE_GUIDE.md
+   └─ Complete guide with troubleshooting
+
+🔧 1_locate_pybuda_source.sh
+   └─ Finds PyBuda source code on host
+
+🔍 2_analyze_build_requirements.sh
+   └─ Checks source structure and dependencies
+
+🏗️ 3_build_pybuda_from_source.sh
+   └─ Automated build script (main script)
+
+🩺 4_diagnose_build_environment.sh
+   └─ Checks if environment is ready
+
+📋 QUICK_REFERENCE.txt
+   └─ This file
+
+┌──────────────────────────────────────────────────────────────────┐
+│ EXPECTED SOURCE LOCATION                                         │
+└──────────────────────────────────────────────────────────────────┘
+
+Host: /home/baruch/programs/april16tt/tt-buda
+Container: /host_home/programs/april16tt/tt-buda
+
+Structure:
+  tt-buda/
+  ├── third_party/budabackend/     ← C++ core (already built)
+  │   └── build/lib/libdevice.so
+  └── pybuda/                       ← Python package (to build)
+      ├── setup.py
+      ├── requirements.txt
+      └── csrc/                     ← C++ extensions
+
+┌──────────────────────────────────────────────────────────────────┐
+│ BUILD TIME ESTIMATE                                              │
+└──────────────────────────────────────────────────────────────────┘
+
+Script execution: 5-15 minutes
+  ├─ Dependency installation: 1-2 min
+  ├─ PyBuda compilation: 3-10 min
+  └─ Testing: 1-2 min
+
+Note: budabackend (C++ core) is already built, so we skip that step.
+
+┌──────────────────────────────────────────────────────────────────┐
+│ SUCCESS INDICATORS                                               │
+└──────────────────────────────────────────────────────────────────┘
+
+✓ Script completes without errors
+✓ Wheel file created: pybuda-*.whl
+✓ Installation succeeds
+✓ Import works: import pybuda
+✓ No yaml-cpp errors
+✓ BackendType available
+
+┌──────────────────────────────────────────────────────────────────┐
+│ COMMON ISSUES & FIXES                                            │
+└──────────────────────────────────────────────────────────────────┘
+
+Issue: "Source not found"
+Fix: Update SOURCE_PATH in build script
+
+Issue: "budabackend not found"
+Fix: Verify libdevice.so exists in build/lib/
+
+Issue: "pybind11 not found"
+Fix: pip install pybind11 --break-system-packages
+
+Issue: "Permission denied"
+Fix: Run with sudo or docker exec -u root
+
+Issue: "Disk space"
+Fix: Clean old builds: docker system prune
+
+┌──────────────────────────────────────────────────────────────────┐
+│ MANUAL BUILD (if automated script fails)                         │
+└──────────────────────────────────────────────────────────────────┘
+
+Inside container:
+
+# Navigate to source
+cd /host_home/programs/april16tt/tt-buda/pybuda
+
+# Set architecture
+export ARCH_NAME=wormhole_b0
+export BACKEND_ARCH_NAME=wormhole_b0
+
+# Clean previous builds
+rm -rf build/ dist/ *.egg-info
+
+# Build wheel
+python setup.py bdist_wheel
+
+# Install
+pip install dist/*.whl --break-system-packages --force-reinstall
+
+# Test
+python -c "import pybuda; print(pybuda.__version__)"
+
+┌──────────────────────────────────────────────────────────────────┐
+│ AFTER SUCCESSFUL BUILD                                           │
+└──────────────────────────────────────────────────────────────────┘
+
+1. ✓ Test PyBuda functionality
+2. ✓ Run model inference
+3. ✓ Backup wheel file (auto-copied to ~/pybuda-wheels-backup/)
+4. ✓ Update Dockerfile to build from source
+5. ✓ Document in your GitHub repo
+6. ✓ Share success with community
+
+┌──────────────────────────────────────────────────────────────────┐
+│ TROUBLESHOOTING RESOURCES                                        │
+└──────────────────────────────────────────────────────────────────┘
+
+📖 BUILD_FROM_SOURCE_GUIDE.md - Detailed instructions
+🐛 GitHub Issues - Check for known issues
+💬 Discord - Community help
+📧 support@tenstorrent.com - Official support
+
+┌──────────────────────────────────────────────────────────────────┐
+│ CONTAINER INFO                                                   │
+└──────────────────────────────────────────────────────────────────┘
+
+Name: tt-e75-dev
+Host: baruch@192.168.1.158
+Python: 3.10.12
+OS: Ubuntu 22.04
+Architecture: wormhole_b0
+
+Hardware:
+  Device 0: Greyskull e150 (working)
+  Device 1: Wormhole e75 (target)
+
+┌──────────────────────────────────────────────────────────────────┐
+│ WHAT THIS FIXES                                                  │
+└──────────────────────────────────────────────────────────────────┘
+
+Before (pre-built wheel):
+  ✗ ImportError: libyaml-cpp.so.0.6 not found
+  ✗ undefined symbol errors
+  ✗ ABI incompatibility
+
+After (built from source):
+  ✓ Compiled against yaml-cpp 0.7
+  ✓ No ABI issues
+  ✓ import pybuda works
+  ✓ Ready for model inference
+
+┌──────────────────────────────────────────────────────────────────┐
+│ NEXT STEPS                                                       │
+└──────────────────────────────────────────────────────────────────┘
+
+1. Run the diagnostic: bash 4_diagnose_build_environment.sh
+2. Run the build: bash 3_build_pybuda_from_source.sh
+3. Test: python -c "import pybuda"
+4. Celebrate! 🎉
+
+Then tackle the firmware build issue separately (see COMMUNITY-HELP-REQUEST.md)
+
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║  Questions? See BUILD_FROM_SOURCE_GUIDE.md for full details     ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
