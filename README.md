@@ -4,6 +4,37 @@
 
 A Docker-based development environment for Tenstorrent Wormhole e75 accelerators, with VS Code Dev Container integration.
 
+## 📊 Architecture Diagrams
+
+### System Architecture
+
+```mermaid
+graph TB
+    subgraph Host["Host System (Ubuntu 22.04)"]
+        VSCode["VS Code<br/>Dev Containers Extension"]
+        Docker["Docker Engine"]
+        Hardware["Tenstorrent Hardware<br/>/dev/tenstorrent/0<br/>/dev/tenstorrent/1"]
+    end
+
+    subgraph Container["Docker Container (Ubuntu 22.04)"]
+        Python["Python 3.10.12<br/>PyBuda v0.19.3"]
+        BuildTools["Build Tools<br/>GCC 11.4, CMake, Ninja"]
+        Workspace["/work/"]
+        Backend["tt-budabackend<br/>Pinned: e4e03c8c"]
+    end
+
+    VSCode -->|Reopen in Container| Container
+    Docker -->|Device Passthrough| Hardware
+    Container -->|Access Devices| Hardware
+    BuildTools -->|Compiles| Backend
+    Python -->|Uses| Backend
+    Workspace -->|Contains| Backend
+
+    style Container fill:#e1f5ff
+    style Host fill:#fff4e6
+    style Hardware fill:#ffe6e6
+```
+
 ## ⚡ Quick Start
 
 ```bash
@@ -69,13 +100,169 @@ This repository provides a **complete, reproducible development environment** fo
 - **VS Code**: With Dev Containers extension (v0.427+)
 - **Disk Space**: ~5GB for container, ~2GB for build artifacts
 
+## 🌊 Data Flow Architecture
+
+```mermaid
+graph LR
+    subgraph Input["Input Layer"]
+        Netlists["Netlists<br/>.yaml files"]
+        Models["Neural Network<br/>Models"]
+    end
+
+    subgraph Compilation["Compilation Layer"]
+        PyBuda["PyBuda<br/>v0.19.3"]
+        Backend["tt-budabackend<br/>Compiler/Runtime"]
+        UMD["Unified Model Driver<br/>(UMD)"]
+    end
+
+    subgraph Hardware["Hardware Layer"]
+        Device0["/dev/tenstorrent/0<br/>Wormhole e75"]
+        Device1["/dev/tenstorrent/1<br/>Wormhole e75"]
+    end
+
+    subgraph Output["Output Layer"]
+        Results["Test Results<br/>PCC Scores"]
+        Logs["Build Logs<br/>Test Output"]
+    end
+
+    Netlists --> Backend
+    Models --> PyBuda
+    PyBuda --> Backend
+    Backend --> UMD
+    UMD --> Device0
+    UMD --> Device1
+    Device0 --> Results
+    Device1 --> Results
+    Backend --> Logs
+
+    style Input fill:#E8F5E9
+    style Compilation fill:#BBDEFB
+    style Hardware fill:#FFCCBC
+    style Output fill:#FFF9C4
+```
+
+## 🔄 Build Workflow
+
+```mermaid
+graph LR
+    A[make clone] --> B[make build_hw]
+    B --> C[make smoke-silicon]
+
+    A -->|Alternative| D[make tests]
+    D --> E[make smoke-sim]
+
+    B -.->|If build fails| F[make clean]
+    F -.-> B
+
+    G[make deps] -.->|Install Python deps| A
+
+    H[make lock-check] -.->|Verify commit| B
+
+    style A fill:#90EE90
+    style B fill:#87CEEB
+    style C fill:#FFD700
+    style E fill:#FFD700
+    style F fill:#FFB6C1
+```
+
+### Build Target Dependencies
+
+```mermaid
+graph TD
+    clone[make clone] --> lockcheck[make lock-check]
+    lockcheck --> build[make build_hw]
+    build --> tests[make tests]
+    tests --> smoke-sim[make smoke-sim]
+    tests --> smoke-silicon[make smoke-silicon]
+
+    clean[make clean] -.->|Removes build/| build
+    deps[make deps] -.->|Installs Python deps| clone
+    update[make update] -.->|Updates repo| lockcheck
+
+    style clone fill:#E8F5E9
+    style build fill:#BBDEFB
+    style tests fill:#FFF9C4
+    style smoke-sim fill:#FFE0B2
+    style smoke-silicon fill:#FFCCBC
+```
+
+## 🔧 Development Workflow
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant VSCode as VS Code
+    participant Container as Dev Container
+    participant Makefile as Makefile
+    participant Backend as tt-budabackend
+    participant Hardware as e75 Hardware
+
+    Dev->>VSCode: Open repository
+    VSCode->>Container: Reopen in Container
+    Container->>Container: Mount /dev/tenstorrent
+
+    Dev->>Makefile: make clone
+    Makefile->>Backend: Clone at pinned commit
+    Backend-->>Makefile: Repository ready
+
+    Dev->>Makefile: make build_hw
+    Makefile->>Backend: Compile with ARCH_NAME=wormhole_b0
+    Backend-->>Makefile: Build complete
+
+    Dev->>Makefile: make smoke-silicon
+    Makefile->>Backend: Run test_graph --silicon
+    Backend->>Hardware: Execute test on device
+    Hardware-->>Backend: Test results
+    Backend-->>Dev: ✓ Test passed
+
+    Dev->>Dev: Modify code/netlists
+    Dev->>Makefile: make clean && make build_hw
+    Makefile->>Backend: Rebuild
+    Backend-->>Dev: Ready for testing
+```
+
+## 📖 Documentation Structure
+
+```mermaid
+graph TD
+    README[README.md<br/>Main Entry Point]
+
+    README --> QuickStart[QUICKSTART.md<br/>30-second setup]
+    README --> Setup[SETUP_GUIDE.md<br/>Detailed installation]
+    README --> Troubleshoot[TROUBLESHOOTING.md<br/>Common issues]
+
+    README --> GitPush[GITHUB_PUSH_GUIDE.md<br/>Git operations]
+    README --> Summary[SUMMARY.txt<br/>Repository overview]
+
+    README --> PyBuda[pybuda-build-helper/<br/>PyBuda build scripts]
+    PyBuda --> BuildGuide[BUILD_FROM_SOURCE_GUIDE.md]
+    PyBuda --> BuildScripts[Build Scripts 1-4]
+
+    README --> Scripts[scripts/<br/>Helper scripts]
+    Scripts --> Verify[01_verify_environment.sh]
+    Scripts --> FirstBuild[02_first_build.sh]
+    Scripts --> Tests[03_run_tests.sh]
+    Scripts --> Clean[04_clean_rebuild.sh]
+
+    style README fill:#4CAF50,color:#fff
+    style QuickStart fill:#2196F3,color:#fff
+    style Setup fill:#2196F3,color:#fff
+    style Troubleshoot fill:#FF9800,color:#fff
+    style PyBuda fill:#9C27B0,color:#fff
+    style Scripts fill:#00BCD4,color:#fff
+```
+
 ## 📖 Documentation
 
 | Document | Purpose |
 |----------|---------|
 | **[QUICKSTART.md](QUICKSTART.md)** | Get running in 30 seconds |
 | **[SETUP_GUIDE.md](SETUP_GUIDE.md)** | Comprehensive setup instructions |
+| **[ARCHITECTURE.md](ARCHITECTURE.md)** | 🆕 Detailed system architecture and design |
 | **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** | Solutions to common issues |
+| **[GITHUB_PUSH_GUIDE.md](GITHUB_PUSH_GUIDE.md)** | Git operations and push guide |
+| **[IMPROVEMENTS.md](IMPROVEMENTS.md)** | 🆕 Suggested repository improvements |
+| **[pybuda-build-helper/](pybuda-build-helper/)** | PyBuda build-from-source tools |
 
 ## 🎓 Common Commands
 
@@ -163,6 +350,61 @@ After successful setup:
 2. Run comprehensive tests: `./scripts/03_run_tests.sh`
 3. Read tt-budabackend documentation
 4. Customize Makefile targets for your workflow
+
+## 🔀 Git Workflow
+
+```mermaid
+gitGraph
+    commit id: "Initial setup"
+    commit id: "Add Dockerfile & Makefile"
+    commit id: "Add devcontainer config"
+    branch feature/new-tests
+    checkout feature/new-tests
+    commit id: "Add new test netlists"
+    commit id: "Update test scripts"
+    checkout main
+    merge feature/new-tests
+    commit id: "Document changes"
+    branch feature/pybuda-helper
+    checkout feature/pybuda-helper
+    commit id: "Add PyBuda build scripts"
+    commit id: "Add build documentation"
+    checkout main
+    merge feature/pybuda-helper
+    commit id: "Release v1.0"
+```
+
+### Git Operations Guide
+
+```mermaid
+flowchart TD
+    Start([Start Development]) --> Clone[git clone repository]
+    Clone --> Branch[git checkout -b feature/name]
+
+    Branch --> Develop{Make Changes}
+    Develop -->|Code Complete| Stage[git add .]
+    Stage --> Commit[git commit -m message]
+
+    Commit --> Test{Tests Pass?}
+    Test -->|No| Fix[Fix Issues]
+    Fix --> Develop
+    Test -->|Yes| Push[git push origin feature/name]
+
+    Push --> PR[Create Pull Request]
+    PR --> Review{Review Approved?}
+    Review -->|No| RequestChanges[Address Feedback]
+    RequestChanges --> Develop
+    Review -->|Yes| Merge[Merge to Main]
+
+    Merge --> Tag[git tag -a v1.x.x]
+    Tag --> End([Feature Complete])
+
+    style Start fill:#90EE90
+    style End fill:#FFD700
+    style Test fill:#FFB6C1
+    style Review fill:#FFB6C1
+    style Merge fill:#87CEEB
+```
 
 ## �� License
 
