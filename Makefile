@@ -1,25 +1,25 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# Makefile — Tenstorrent Greyskull e150 Legacy Dev Environment
+# Makefile — Tenstorrent Grayskull (e75/e150) Legacy Dev Environment
 # ─────────────────────────────────────────────────────────────────────────────
 # Purpose:
-#   Clone, build, and test legacy tt-budabackend for Greyskull (ARCH_NAME=grayskull)
+#   Clone, build, and test legacy tt-budabackend for Grayskull (ARCH_NAME=grayskull)
 # Requirements:
 #   - Run inside devcontainer (recommended) or on host with legacy stack
-#   - ARCH_NAME must be 'grayskull' for e150
+#   - ARCH_NAME must be 'grayskull' for Grayskull cards (e75/e150)
 # Usage:
 #   make deps          — Install Python dependencies
 #   make clone         — Clone tt-budabackend at pinned commit
 #   make build_hw      — Build hardware-enabled backend
 #   make tests         — Build graph tests
 #   make smoke-sim     — Run simulation test
-#   make smoke-silicon — Run silicon test (requires e150 + drivers)
+#   make smoke-silicon — Run silicon test (requires a Grayskull card + drivers)
 
 # ── Configuration ────────────────────────────────────────────────────────────
-ARCH_NAME ?= wormhole_b0
+ARCH_NAME ?= grayskull
 REPO_URL  := https://github.com/tenstorrent/tt-budabackend.git
 REPO_DIR  := tt-budabackend
 
-# Pinned commit for reproducibility (last known-good for Greyskull legacy)
+# Pinned commit for reproducibility (last known-good for Grayskull legacy)
 # This is an example SHA; update to match your validated version
 # For v0.19.3 era, find the commit from around that release
 REPO_COMMIT := e4e03c8c2bf07af4ca5b878808408b89fd27778d
@@ -41,7 +41,7 @@ NETLIST    ?= $(REPO_DIR)/verif/graph_tests/netlists/netlist_softmax_single_tile
 
 help:
 	@echo "═══════════════════════════════════════════════════════════════════════"
-	@echo "  Tenstorrent Greyskull e150 Legacy Build System"
+	@echo "  Tenstorrent Grayskull (e75/e150) Legacy Build System"
 	@echo "═══════════════════════════════════════════════════════════════════════"
 	@echo ""
 	@echo "Targets:"
@@ -55,7 +55,7 @@ help:
 	@echo "  tests          — Build graph tests"
 	@echo ""
 	@echo "  smoke-sim      — Run test_graph on netlist (simulation mode)"
-	@echo "  smoke-silicon  — Run test_graph with --silicon (requires e150 + drivers)"
+	@echo "  smoke-silicon  — Run test_graph with --silicon (requires a Grayskull card + drivers)"
 	@echo ""
 	@echo "  clean          — Remove $(REPO_DIR)/build"
 	@echo "  tt-smi         — Run tt-smi (if available; driver/card visibility)"

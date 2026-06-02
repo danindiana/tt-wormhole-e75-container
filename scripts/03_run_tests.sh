@@ -8,7 +8,7 @@
 set -euo pipefail
 
 echo "═══════════════════════════════════════════════════════════════════════"
-echo "  Tenstorrent Greyskull e150 Test Suite"
+echo "  Tenstorrent Grayskull e150 Test Suite"
 echo "═══════════════════════════════════════════════════════════════════════"
 echo ""
 

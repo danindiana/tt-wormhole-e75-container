@@ -102,7 +102,7 @@
     │  4. Install Python dependencies        │
     │  5. Clean previous builds              │
     │  6. Set environment variables          │
-    │     • ARCH_NAME=wormhole_b0           │
+    │     • ARCH_NAME=grayskull           │
     │  7. Build wheel                        │
     │     • python setup.py bdist_wheel     │
     │     ⏱ Takes 5-15 minutes              │
@@ -158,7 +158,7 @@
     │  ✅ No ABI errors                      │
     │  ✅ Compatible with yaml-cpp 0.7       │
     │  ✅ Compatible with boost 1.74         │
-    │  ✅ Ready for Wormhole B0              │
+    │  ✅ Ready for Grayskull              │
     │                                        │
     │  Backup location:                      │
     │  ~/pybuda-wheels-backup/               │

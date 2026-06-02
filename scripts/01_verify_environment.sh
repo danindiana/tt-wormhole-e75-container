@@ -2,13 +2,13 @@
 # ═════════════════════════════════════════════════════════════════════════════
 # 01_verify_environment.sh
 # ═════════════════════════════════════════════════════════════════════════════
-# Purpose: Verify the Greyskull development environment is properly set up
+# Purpose: Verify the Grayskull development environment is properly set up
 # Run: bash scripts/01_verify_environment.sh
 
 set -euo pipefail
 
 echo "═══════════════════════════════════════════════════════════════════════"
-echo "  Tenstorrent Greyskull e150 Environment Verification"
+echo "  Tenstorrent Grayskull e150 Environment Verification"
 echo "═══════════════════════════════════════════════════════════════════════"
 echo ""
 

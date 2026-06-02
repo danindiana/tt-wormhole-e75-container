@@ -1,4 +1,4 @@
-# Wormhole e75 Container - Git Repository Guide
+# Grayskull e75 Container - Git Repository Guide
 
 **Repository Location:** `~/Documents/ssh-lan-discovery-20251103-214505/tt-e75-container-files/`  
 **Status:** Git initialized and committed ✅  
@@ -8,11 +8,11 @@
 
 ## Repository Contents
 
-This repository contains the complete Docker development environment for TensorTorrent Wormhole e75 AI accelerator card.
+This repository contains the complete Docker development environment for Tenstorrent Grayskull e75 AI accelerator card.
 
 **Key Files:**
 - `Dockerfile` - Container definition (Ubuntu 22.04 + Python 3.10)
-- `Makefile` - Build automation (ARCH_NAME=wormhole_b0)
+- `Makefile` - Build automation (ARCH_NAME=grayskull)
 - `Makefile.lock` - Pinned commit: e4e03c8c
 - `.devcontainer/` - VS Code Dev Container integration
 - Documentation: README, QUICKSTART, SETUP_GUIDE, TROUBLESHOOTING
@@ -28,7 +28,7 @@ This repository contains the complete Docker development environment for TensorT
 
 Go to GitHub and create a new repository:
 - **Name:** `tt-wormhole-e75-container` (or your preferred name)
-- **Description:** "Docker development environment for TensorTorrent Wormhole e75 AI accelerator"
+- **Description:** "Docker development environment for Tenstorrent Grayskull e75 AI accelerator"
 - **Visibility:** Public or Private (your choice)
 - **Initialize:** Do NOT add README, .gitignore, or license (we already have them)
 
@@ -85,7 +85,7 @@ tt-e75-container-files/
 │   ├── 04_clean_rebuild.sh
 │   └── test_results_20251023_093557/
 ├── Dockerfile                     # ⭐ Container definition
-├── Makefile                       # ⭐ Build automation (wormhole_b0)
+├── Makefile                       # ⭐ Build automation (grayskull)
 ├── Makefile.lock                  # Pinned commit
 ├── README.md                      # Main documentation
 ├── QUICKSTART.md                  # 30-second setup
@@ -105,18 +105,18 @@ tt-e75-container-files/
 
 **Commit Message:**
 ```
-Initial commit: Wormhole e75 container configuration
+Initial commit: Grayskull e75 container configuration
 
 - Dockerfile for Ubuntu 22.04 + Python 3.10
-- Makefile configured for ARCH_NAME=wormhole_b0
+- Makefile configured for ARCH_NAME=grayskull
 - Complete documentation (README, QUICKSTART, SETUP_GUIDE, TROUBLESHOOTING)
 - VS Code Dev Container integration
 - Helper scripts for build and verification
-- Based on working Greyskull e150 container
+- Based on working Grayskull e150 container
 - Core library builds successfully
-- Firmware targets (erisc) need resolution for Wormhole B0
+- Firmware targets (erisc) need resolution for Grayskull
 
-Status: Partial - needs external guidance on Wormhole firmware
+Status: Partial - needs external guidance on Grayskull firmware
 ```
 
 **Branch:** master (can rename to main when pushing)
@@ -147,7 +147,7 @@ https://github.com/USERNAME/tt-wormhole-e75-container
 ```
 
 Share this with:
-- TensorTorrent community (Discord, forums)
+- Tenstorrent community (Discord, forums)
 - GitHub issues/discussions
 - Collaborators who can help with firmware resolution
 
@@ -194,13 +194,13 @@ git push
 
 **Description:**
 ```
-Docker development environment for TensorTorrent Wormhole e75 AI accelerator. 
-Based on working Greyskull e150 setup. Core library builds, firmware targets need resolution.
+Docker development environment for Tenstorrent Grayskull e75 AI accelerator. 
+Based on working Grayskull e150 setup. Core library builds, firmware targets need resolution.
 ```
 
 **Topics/Tags:**
 - `tenstorrent`
-- `wormhole`
+- `grayskull`
 - `ai-accelerator`
 - `docker`
 - `development-environment`
@@ -208,14 +208,14 @@ Based on working Greyskull e150 setup. Core library builds, firmware targets nee
 
 **Issues to Create:**
 
-1. **"Wormhole B0 firmware targets (erisc) not building"**
+1. **"Grayskull firmware targets (erisc) not building"**
    - Label: bug, help-wanted
    - Include error message and build output
    - Ask for guidance on commit or firmware package
 
-2. **"Documentation needs Wormhole-specific updates"**
+2. **"Documentation needs Grayskull-specific updates"**
    - Label: documentation
-   - List files referencing Greyskull
+   - List files referencing Grayskull
    - Mark as low priority
 
 ---

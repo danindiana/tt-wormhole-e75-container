@@ -1,5 +1,5 @@
 ═══════════════════════════════════════════════════════════════════════════════
-  TENSTORRENT GREYSKULL E150 DEV ENVIRONMENT - SETUP COMPLETE
+  TENSTORRENT GRAYSKULL E150 DEV ENVIRONMENT - SETUP COMPLETE
 ═══════════════════════════════════════════════════════════════════════════════
 
 Created: 2025-10-23 03:18:11
@@ -23,7 +23,7 @@ WHAT WAS BUILT
 HARDWARE VERIFIED
 ───────────────────────────────────────────────────────────────────────────────
 
-• 2x Tenstorrent Greyskull e150 PCIe cards
+• 2x Tenstorrent Grayskull PCIe cards (one e75, one e150)
 • Devices: /dev/tenstorrent/0 and /dev/tenstorrent/1
 • PCIe Vendor ID: 1e52
 • Architecture: ARCH_NAME=grayskull
@@ -102,7 +102,7 @@ Commit 5: 3565185 - Fix: Add ZeroMQ, git-lfs, system PyYAML; fix Makefile
 Commit 4: ec367bc - Fix: Export PATH in Makefile to activate venv
 Commit 3: 569c121 - Fix: Add git submodule initialization to Makefile clone
 Commit 2: 40097d7 - Fix: Update Makefile.lock with actual commit hash
-Commit 1: 35fb2ae - Initial commit: Tenstorrent Greyskull dev environment
+Commit 1: 35fb2ae - Initial commit: Tenstorrent Grayskull dev environment
 
 Tag: v1.0-working @ b7589fc
 
@@ -208,8 +208,8 @@ IMPORTANT WARNINGS
 ───────────────────────────────────────────────────────────────────────────────
 
 ⚠️  Python 3.10 REQUIRED - PyBuda breaks on Python 3.12+
-⚠️  Do NOT upgrade to mainline TT-Forge (incompatible with Greyskull e150)
-⚠️  Greyskull e150 is END-OF-LIFE hardware
+⚠️  Do NOT upgrade to mainline TT-Forge (incompatible with Grayskull e150)
+⚠️  Grayskull e150 is END-OF-LIFE hardware
 ⚠️  All versions are FROZEN for reproducibility
 ⚠️  This is a LEGACY stack - not for new projects
 

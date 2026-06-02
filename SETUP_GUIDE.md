@@ -1,7 +1,7 @@
-# Tenstorrent Greyskull e150 Development Environment - Setup Guide
+# Tenstorrent Grayskull e150 Development Environment - Setup Guide
 
 **Created:** October 23, 2025  
-**Machine:** Ubuntu 22.04 with 2x Greyskull e150 cards  
+**Machine:** Ubuntu 22.04 with 2x Grayskull cards (one e75, one e150)  
 **Status:** ✅ Fully Operational
 
 ---
@@ -19,14 +19,14 @@
 
 ## Overview
 
-This is a **reproducible development environment** for Tenstorrent Greyskull e150 accelerator cards using:
-- **Legacy frozen stack** (Greyskull is EOL)
+This is a **reproducible development environment** for Tenstorrent Grayskull e150 accelerator cards using:
+- **Legacy frozen stack** (Grayskull is EOL)
 - **Docker dev containers** for isolation
 - **VS Code integration** for seamless workflow
 - **Automated builds** via Makefile
 
 ### Hardware
-- 2x Tenstorrent Greyskull e150 cards
+- 2x Tenstorrent Grayskull cards (one e75, one e150)
 - Devices: `/dev/tenstorrent/0` and `/dev/tenstorrent/1`
 
 ### Software Stack (Pinned/Legacy)
@@ -304,7 +304,7 @@ git remote add origin <your-repo-url>
 
 # Commit and push
 git add .
-git commit -m "Initial Greyskull e150 dev environment"
+git commit -m "Initial Grayskull e150 dev environment"
 git push -u origin main
 ```
 
@@ -330,17 +330,17 @@ See `scripts/` directory for workflow automation:
 
 ## Important Notes
 
-1. **Greyskull is EOL** - Do not upgrade to TT-Forge or mainline Metalium
+1. **Grayskull is EOL** - Do not upgrade to TT-Forge or mainline Metalium
 2. **Python 3.10 only** - PyBuda v0.19.3 breaks on Python 3.12+
 3. **Pinned versions** - All dependencies frozen for reproducibility
-4. **tt-budabackend deprecated** - This is the last working version for Greyskull
+4. **tt-budabackend deprecated** - This is the last working version for Grayskull
 5. **BIOS required** - PCIe AER must be "OS First" in BIOS
 
 ---
 
 ## Resources
 
-- [Tenstorrent Greyskull Docs](https://docs.tenstorrent.com/aibs/grayskull/README.html)
+- [Tenstorrent Grayskull Docs](https://docs.tenstorrent.com/aibs/grayskull/README.html)
 - [tt-budabackend GitHub](https://github.com/tenstorrent/tt-budabackend)
 - [tt-kmd GitHub](https://github.com/tenstorrent/tt-kmd)
 - [PyBuda Docs](https://docs.tenstorrent.com/pybuda/latest/toc.html)

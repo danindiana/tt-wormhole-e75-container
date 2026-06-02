@@ -2,7 +2,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # setup_greyskull_legacy.sh
 # ─────────────────────────────────────────────────────────────────────────────
-# Purpose: Prepare a reproducible legacy dev env for Tenstorrent Greyskull e150
+# Purpose: Prepare a reproducible legacy dev env for Tenstorrent Grayskull e150
 # OS: Ubuntu 22.04 (tested); run with:  sudo bash setup_greyskull_legacy.sh
 # Notes:
 #   • You must supply legacy artifacts (KMD 1.31, fw_pack-80.14.0.0.fwbundle,
@@ -17,7 +17,7 @@ set -euo pipefail
 # Put your legacy bundles/tarballs here before running the script.
 LEGACY_ROOT="$HOME/tt_legacy_greyskull"
 KMD_TARBALL="$LEGACY_ROOT/tt-kmd-1.31.tar.gz"          # e.g., driver source dkms tarball
-FW_BUNDLE="$LEGACY_ROOT/fw_pack-80.14.0.0.fwbundle"    # Greyskull firmware bundle
+FW_BUNDLE="$LEGACY_ROOT/fw_pack-80.14.0.0.fwbundle"    # Grayskull firmware bundle
 BUDA_WHL_DIR="$LEGACY_ROOT/pybuda-0.19.3-wheels"       # optional: offline wheels cache
 
 # Python venv for host-side tools (tt-smi/tt-flash python wrappers if applicable)

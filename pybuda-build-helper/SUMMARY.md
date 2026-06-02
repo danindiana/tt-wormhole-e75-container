@@ -2,7 +2,7 @@
 
 ## 🎯 Mission Accomplished
 
-I've investigated building PyBuda from source and created a **complete resource package** to help you resolve the C++ ABI compatibility issue with your Wormhole e75 container.
+I've investigated building PyBuda from source and created a **complete resource package** to help you resolve the C++ ABI compatibility issue with your Grayskull e75 container.
 
 ---
 
@@ -46,7 +46,7 @@ Build PyBuda from source **inside your container** to:
 - ✅ Compile against yaml-cpp 0.7 (your container's version)
 - ✅ Compile against boost 1.74 (your container's version)
 - ✅ Eliminate all ABI mismatches
-- ✅ Ensure Wormhole B0 compatibility
+- ✅ Ensure Grayskull compatibility
 - ✅ Create a wheel you can reuse
 
 ---
@@ -235,7 +235,7 @@ This package integrates with your existing infrastructure:
 - ✅ Works with tt-e75-dev container
 - ✅ Compatible with your source code
 - ✅ Uses existing budabackend build
-- ✅ Doesn't interfere with Greyskull setup
+- ✅ Doesn't interfere with Grayskull setup
 
 ### Future Automation
 You can integrate the build into:
@@ -278,7 +278,7 @@ You can integrate the build into:
 - Quick reference cards
 
 ### External Resources
-- TensorTorrent Discord (community help)
+- Tenstorrent Discord (community help)
 - GitHub Discussions (technical questions)
 - Your repository (share experience)
 
@@ -430,7 +430,7 @@ Or read `README.md` first for complete overview.
 ---
 
 **Created**: November 3, 2025  
-**For**: TensorTorrent Wormhole e75 Development  
+**For**: Tenstorrent Grayskull e75 Development  
 **Purpose**: Resolve PyBuda C++ ABI compatibility issue  
 **Status**: Complete and ready to use  
 

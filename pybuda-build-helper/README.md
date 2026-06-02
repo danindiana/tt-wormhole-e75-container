@@ -2,7 +2,7 @@
 
 ## 📦 What's in This Package
 
-This package contains everything you need to build PyBuda from source to resolve C++ ABI compatibility issues with the Wormhole e75 container.
+This package contains everything you need to build PyBuda from source to resolve C++ ABI compatibility issues with the Grayskull e75 container.
 
 ### 📄 Documentation Files
 
@@ -89,12 +89,12 @@ Build PyBuda from source **inside** your container. This ensures:
 - ✅ Compiled against boost 1.74 (your container's version)
 - ✅ Compatible with all container libraries
 - ✅ No ABI mismatches
-- ✅ Works with Wormhole B0 hardware
+- ✅ Works with Grayskull hardware
 
 ## 📋 Prerequisites
 
 ### Hardware
-- ✅ Wormhole e75 card installed and accessible
+- ✅ Grayskull e75 card installed and accessible
 - ✅ /dev/tenstorrent/1 device available
 
 ### Software (Already Installed)
@@ -233,10 +233,10 @@ Comprehensive guide with:
 
 ### Architecture
 
-The build is configured for **Wormhole B0**:
+The build is configured for **Grayskull**:
 ```bash
-export ARCH_NAME=wormhole_b0
-export BACKEND_ARCH_NAME=wormhole_b0
+export ARCH_NAME=grayskull
+export BACKEND_ARCH_NAME=grayskull
 ```
 
 ### Source Mounting
@@ -353,7 +353,7 @@ Add notes to your repository about:
 ### 5. Share with Community
 
 Post your success on:
-- TensorTorrent Discord
+- Tenstorrent Discord
 - GitHub Discussions
 - Your repository
 
@@ -404,7 +404,7 @@ This package provides:
 ---
 
 **Created**: November 3, 2025  
-**For**: TensorTorrent Wormhole e75 Development  
+**For**: Tenstorrent Grayskull e75 Development  
 **Repository**: https://github.com/danindiana/tt-wormhole-e75-container
 
 **Good luck with your build! 🚀**

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides detailed technical information about the Tenstorrent Wormhole e75 development environment architecture, component interactions, and design decisions.
+This document provides detailed technical information about the Tenstorrent Grayskull (e75/e150) development environment architecture, component interactions, and design decisions.
 
 ## System Architecture
 
@@ -30,7 +30,7 @@ graph TB
     subgraph Layer4["Hardware Layer"]
         Driver["TT-KMD v1.31"]
         Firmware["fw_pack-80.14.0.0"]
-        Hardware["Wormhole e75 PCIe Cards"]
+        Hardware["Grayskull e75 / e150 PCIe Cards"]
     end
 
     Layer1 --> Layer2
@@ -89,7 +89,7 @@ PyYAML 6.0
 
 **Pinned Commit**: `e4e03c8c2bf07af4ca5b878808408b89fd27778d`
 
-**Architecture**: `ARCH_NAME=wormhole_b0` (for Wormhole e75)
+**Architecture**: `ARCH_NAME=grayskull` (for Grayskull e75 and e150)
 
 **Key Components**:
 
@@ -119,7 +119,7 @@ graph LR
 
 **Build Process**:
 1. Clone repository with submodules
-2. Set `ARCH_NAME=wormhole_b0`
+2. Set `ARCH_NAME=grayskull`
 3. Run `make -j$(nproc) build_hw`
 4. Produces `build/lib/libdevice.so` and test binaries
 
@@ -154,7 +154,7 @@ sequenceDiagram
 
     User->>PyBuda: Define model
     PyBuda->>Backend: Convert to IR
-    Backend->>Compiler: Compile for wormhole_b0
+    Backend->>Compiler: Compile for grayskull
     Compiler->>Compiler: Optimize graph
     Compiler->>UMD: Generate device commands
     UMD->>Hardware: Program accelerator
@@ -229,7 +229,7 @@ graph TD
    - Creates `Makefile.lock`
 
 3. **Hardware Build** (`make build_hw`)
-   - Sets `ARCH_NAME=wormhole_b0`
+   - Sets `ARCH_NAME=grayskull`
    - Compiles with `-j$(nproc)` parallelization
    - Produces `libdevice.so` and UMD libraries
 
@@ -449,7 +449,7 @@ python3 -c "import pybuda; print(pybuda.__version__)"
 ### Why Pinned Commits?
 
 **Reasoning**:
-- Wormhole e75 is EOL hardware
+- Grayskull (e75/e150) is EOL hardware
 - PyBuda is legacy software
 - Newer versions break compatibility
 - Reproducibility is critical
@@ -482,7 +482,7 @@ python3 -c "import pybuda; print(pybuda.__version__)"
 4. Update build process
 5. Revalidate all tests
 
-**Current Status**: Wormhole e75 not supported by TT-Forge
+**Current Status**: Grayskull (e75/e150) not supported by TT-Forge
 
 ### Potential Improvements
 
