@@ -300,7 +300,7 @@ After running the build (either method), you should see:
 ### External Resources
 - **Repository**: https://github.com/danindiana/tt-wormhole-e75-container
 - **Community Help**: See COMMUNITY-HELP-REQUEST.md (if available)
-- **TensorTorrent Discord**: For community support
+- **Tenstorrent Discord**: For community support
 - **GitHub Issues**: For bug reports
 
 ---
@@ -384,7 +384,7 @@ If you need help:
    - Review error messages
 
 3. **Community Support**
-   - TensorTorrent Discord
+   - Tenstorrent Discord
    - GitHub Discussions
    - GitHub Issues
 
@@ -397,8 +397,8 @@ If you need help:
 
 **Package Version**: 1.0  
 **Created**: November 3, 2025  
-**Target**: TensorTorrent Wormhole e75  
-**Architecture**: wormhole_b0  
+**Target**: Tenstorrent Grayskull e75  
+**Architecture**: grayskull  
 **Container**: tt-e75-dev (Ubuntu 22.04)  
 
 ---
@@ -406,13 +406,13 @@ If you need help:
 ## 🏆 Credits
 
 This package was created to solve the PyBuda C++ ABI compatibility issue
-encountered when setting up a Wormhole e75 development environment.
+encountered when setting up a Grayskull e75 development environment.
 
 The solution: Build PyBuda from source to ensure compatibility with
 container libraries (yaml-cpp 0.7, boost 1.74).
 
 **Special thanks to**:
-- TensorTorrent community
+- Tenstorrent community
 - tt-buda developers
 - Open source contributors
 

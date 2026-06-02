@@ -1,8 +1,10 @@
-# Tenstorrent Wormhole e75 Development Environment
+# Tenstorrent Grayskull e75 / e150 — Containerized Dev Environment
 
-✅ **Status: VERIFIED WORKING** (2025-10-23)
+✅ **Status: VERIFIED WORKING** (2025-10-23) — silicon smoke test passes at **PCC 0.9999** on Grayskull hardware.
 
-A Docker-based development environment for Tenstorrent Wormhole e75 accelerators, with VS Code Dev Container integration.
+A reproducible Docker + VS Code Dev Container that builds the legacy **tt-budabackend** stack (pinned **PyBuda v0.19.3**) and runs a softmax-tile test on real Tenstorrent Grayskull silicon.
+
+> **Stack note:** the PyBuda v0.19.3 / tt-budabackend stack used here is an **intentionally pinned, end-of-life stack** kept for byte-for-byte reproducibility on Grayskull — it is **not** Tenstorrent's current recommended toolchain. New work should target TT-Forge / TT-Metalium / TT-NN.
 
 ## 📊 Architecture Diagrams
 
@@ -53,9 +55,9 @@ See **[QUICKSTART.md](QUICKSTART.md)** for detailed instructions.
 
 This repository provides a **complete, reproducible development environment** for:
 
-- **Hardware**: 2x Tenstorrent Wormhole e75 PCIe cards
+- **Hardware**: 2x Tenstorrent Grayskull PCIe cards (one e75, one e150)
 - **Software**: Legacy PyBuda v0.19.3 stack (frozen/pinned versions)
-- **Purpose**: Develop and test neural network models on Greyskull hardware
+- **Purpose**: Develop and test neural network models on Grayskull hardware
 - **Environment**: Containerized Ubuntu 22.04 with Python 3.10
 
 ## ✅ Verified Working
@@ -71,7 +73,7 @@ This repository provides a **complete, reproducible development environment** fo
 ```
 
 **Hardware Tested**:
-- 2x Tenstorrent Wormhole e75 (PCIe Vendor ID: 1e52)
+- 2x Tenstorrent Grayskull cards — one e75, one e150 (PCIe Vendor ID: 1e52, Device ID: faca)
 - Devices: `/dev/tenstorrent/0` and `/dev/tenstorrent/1`
 
 ## 📦 What's Included
@@ -95,7 +97,7 @@ This repository provides a **complete, reproducible development environment** fo
 ## 🔧 Prerequisites
 
 - **OS**: Ubuntu 22.04 LTS
-- **Hardware**: Tenstorrent Wormhole e75 PCIe card(s)
+- **Hardware**: Tenstorrent Grayskull e75 or e150 PCIe card(s)
 - **Docker**: 20.10+ (user in docker group)
 - **VS Code**: With Dev Containers extension (v0.427+)
 - **Disk Space**: ~5GB for container, ~2GB for build artifacts
@@ -116,8 +118,8 @@ graph LR
     end
 
     subgraph Hardware["Hardware Layer"]
-        Device0["/dev/tenstorrent/0<br/>Wormhole e75"]
-        Device1["/dev/tenstorrent/1<br/>Wormhole e75"]
+        Device0["/dev/tenstorrent/0<br/>Grayskull (e75/e150)"]
+        Device1["/dev/tenstorrent/1<br/>Grayskull (e75/e150)"]
     end
 
     subgraph Output["Output Layer"]
@@ -206,7 +208,7 @@ sequenceDiagram
     Backend-->>Makefile: Repository ready
 
     Dev->>Makefile: make build_hw
-    Makefile->>Backend: Compile with ARCH_NAME=wormhole_b0
+    Makefile->>Backend: Compile with ARCH_NAME=grayskull
     Backend-->>Makefile: Build complete
 
     Dev->>Makefile: make smoke-silicon
@@ -289,7 +291,7 @@ make lock-check     # Verify at correct commit
 
 This environment uses **legacy, end-of-life software**:
 - **Python 3.10 REQUIRED** (PyBuda breaks on 3.12+)
-- **Wormhole e75** is EOL hardware
+- **Grayskull (e75/e150)** is EOL hardware
 - **Do NOT upgrade** to mainline TT-Forge
 - All versions frozen for reproducibility
 
@@ -323,7 +325,7 @@ Common issues? Check **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** for:
 
 ```
 Host (Ubuntu 22.04)
-├── /dev/tenstorrent/0,1    ← Greyskull cards
+├── /dev/tenstorrent/0,1    ← Grayskull cards
 │
 └── Docker Container (Ubuntu 22.04)
     ├── Python 3.10.12
@@ -413,7 +415,7 @@ This repository configuration is provided as-is. Individual components (tt-budab
 ## 🔗 References
 
 - [tt-budabackend](https://github.com/tenstorrent/tt-budabackend) - Deprecated backend compiler
-- [tt-forge](https://github.com/tenstorrent/tt-forge) - Modern replacement (not compatible with Wormhole e75)
+- [tt-forge](https://github.com/tenstorrent/tt-forge) - Modern replacement (does not support Grayskull)
 - [Tenstorrent](https://tenstorrent.com/) - Company website
 
 ---

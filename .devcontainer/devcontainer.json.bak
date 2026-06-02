@@ -1,5 +1,5 @@
 {
-  "name": "Greyskull e150 Legacy Dev",
+  "name": "Grayskull e150 Legacy Dev",
   "build": {
     "dockerfile": "../Dockerfile",
     "args": {

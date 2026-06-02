@@ -144,7 +144,7 @@ labels: bug
 ## Environment
 - OS: [e.g., Ubuntu 22.04]
 - Docker version: [e.g., 20.10.21]
-- Hardware: [e.g., Wormhole e75 x2]
+- Hardware: [e.g., Grayskull e75 or e150]
 
 ## Steps to Reproduce
 1.
@@ -364,7 +364,7 @@ services:
       - .:/work
       - build-cache:/work/tt-budabackend/build
     environment:
-      - ARCH_NAME=wormhole_b0
+      - ARCH_NAME=grayskull
       - TT_BACKEND_TIMEOUT=3600
     working_dir: /work
     command: bash

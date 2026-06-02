@@ -1,4 +1,4 @@
-# .gitignore for Tenstorrent Greyskull e150 Dev Environment
+# .gitignore for Tenstorrent Grayskull e150 Dev Environment
 
 # Build artifacts
 tt-budabackend/

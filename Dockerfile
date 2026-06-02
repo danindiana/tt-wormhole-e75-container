@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 # ─────────────────────────────────────────────────────────────────────────────
-# Dockerfile - Tenstorrent Greyskull e150 Legacy Dev Environment
+# Dockerfile - Tenstorrent Grayskull e150 Legacy Dev Environment
 # ─────────────────────────────────────────────────────────────────────────────
 # Base: Ubuntu 22.04 with Python 3.10 (legacy PyBuda requirement)
-# Purpose: Build and test tt-budabackend for Greyskull (ARCH_NAME=grayskull)
+# Purpose: Build and test tt-budabackend for Grayskull (ARCH_NAME=grayskull)
 # Note: This is a FROZEN legacy stack; do not upgrade to mainline TT-Forge
 
 FROM ubuntu:22.04

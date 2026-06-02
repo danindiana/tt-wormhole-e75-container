@@ -8,7 +8,7 @@ set -e  # Exit on error
 HOST_USER="baruch"
 HOST_IP="192.168.1.158"
 CONTAINER_NAME="tt-e75-dev"
-ARCH_NAME="wormhole_b0"
+ARCH_NAME="grayskull"
 SOURCE_PATH="/home/baruch/programs/april16tt/tt-buda"
 
 # Colors for output
@@ -271,4 +271,4 @@ echo "  2. Run model inference tests"
 echo "  3. Update your Dockerfile to build from source"
 echo "  4. Share success with community!"
 echo ""
-echo -e "${BLUE}Happy computing with TensorTorrent! 🚀${NC}"
+echo -e "${BLUE}Happy computing with Tenstorrent! 🚀${NC}"

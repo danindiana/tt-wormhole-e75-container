@@ -3,7 +3,7 @@
 ## 📦 Package Summary
 
 **Created**: 11 files (104 KB total)  
-**Purpose**: Resolve PyBuda C++ ABI compatibility for Wormhole e75  
+**Purpose**: Resolve PyBuda C++ ABI compatibility for Grayskull e75  
 **Time to success**: 10-20 minutes  
 **Difficulty**: Easy (automated) to Moderate (manual)
 
@@ -262,12 +262,12 @@ Perfect for visual learners!
 - **Container**: tt-e75-dev
 - **OS**: Ubuntu 22.04
 - **Python**: 3.10.12
-- **Architecture**: wormhole_b0
-- **Hardware**: TensorTorrent Wormhole e75
+- **Architecture**: grayskull
+- **Hardware**: Tenstorrent Grayskull e75
 
 ### Build Configuration
 - **Source**: /home/baruch/programs/april16tt/tt-buda
-- **ARCH_NAME**: wormhole_b0
+- **ARCH_NAME**: grayskull
 - **Libraries**: yaml-cpp 0.7, boost 1.74
 - **Output**: PyBuda wheel (compatible)
 
@@ -339,7 +339,7 @@ Build from source → Compile against container's yaml-cpp 0.7 → No more ABI e
 - Error messages in build output
 
 ### Community
-- TensorTorrent Discord
+- Tenstorrent Discord
 - GitHub Discussions
 - GitHub Issues
 
@@ -427,7 +427,7 @@ bash 0_run_all_steps.sh
 ---
 
 **Package Created**: November 3, 2025  
-**For**: TensorTorrent Wormhole e75 Development  
+**For**: Tenstorrent Grayskull e75 Development  
 **Purpose**: Resolve PyBuda C++ ABI compatibility  
 **Status**: Complete and ready to use  
 **Files**: 11 (104 KB)  

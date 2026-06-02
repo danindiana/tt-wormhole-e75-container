@@ -8,7 +8,7 @@
 set -euo pipefail
 
 echo "═══════════════════════════════════════════════════════════════════════"
-echo "  Tenstorrent Greyskull e150 Clean Rebuild"
+echo "  Tenstorrent Grayskull e150 Clean Rebuild"
 echo "═══════════════════════════════════════════════════════════════════════"
 echo ""
 echo "⚠️  WARNING: This will delete all build artifacts!"

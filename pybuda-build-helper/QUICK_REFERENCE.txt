@@ -15,7 +15,7 @@ Problem: Pre-built PyBuda wheel has C++ ABI incompatibility
 Solution: Build from source to compile against container's exact libs
   ✓ Matches yaml-cpp 0.7
   ✓ Matches boost 1.74
-  ✓ Compatible with Wormhole B0
+  ✓ Compatible with Grayskull
   ✓ No more ABI issues
 
 ┌──────────────────────────────────────────────────────────────────┐
@@ -130,8 +130,8 @@ Inside container:
 cd /host_home/programs/april16tt/tt-buda/pybuda
 
 # Set architecture
-export ARCH_NAME=wormhole_b0
-export BACKEND_ARCH_NAME=wormhole_b0
+export ARCH_NAME=grayskull
+export BACKEND_ARCH_NAME=grayskull
 
 # Clean previous builds
 rm -rf build/ dist/ *.egg-info
@@ -173,11 +173,11 @@ Name: tt-e75-dev
 Host: baruch@192.168.1.158
 Python: 3.10.12
 OS: Ubuntu 22.04
-Architecture: wormhole_b0
+Architecture: grayskull
 
 Hardware:
-  Device 0: Greyskull e150 (working)
-  Device 1: Wormhole e75 (target)
+  Device 0: Grayskull e150 (working)
+  Device 1: Grayskull e75 (target)
 
 ┌──────────────────────────────────────────────────────────────────┐
 │ WHAT THIS FIXES                                                  │

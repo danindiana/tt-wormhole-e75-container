@@ -8,7 +8,7 @@
 set -euo pipefail
 
 echo "═══════════════════════════════════════════════════════════════════════"
-echo "  Tenstorrent Greyskull e150 First Build Workflow"
+echo "  Tenstorrent Grayskull e150 First Build Workflow"
 echo "═══════════════════════════════════════════════════════════════════════"
 echo ""
 echo "This script will:"

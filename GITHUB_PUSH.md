@@ -6,7 +6,7 @@ This repository is ready to be pushed to GitHub for sharing and backup.
 
 1. Go to https://github.com/new
 2. Repository name: `tenstorrent-greyskull-dev` (or your preferred name)
-3. Description: `Docker dev environment for Tenstorrent Greyskull e150 with VS Code integration`
+3. Description: `Docker dev environment for Tenstorrent Grayskull e150 with VS Code integration`
 4. **Keep it Private** (contains hardware-specific configuration)
 5. **Do NOT initialize** with README, .gitignore, or license (we already have these)
 6. Click "Create repository"
@@ -107,7 +107,7 @@ After `make clone`:
 ### Can Make Public if:
 - Remove any proprietary comments
 - Keep as educational/reference material
-- Helpful for other Greyskull e150 users
+- Helpful for other Grayskull e150 users
 
 ## Collaboration
 
@@ -119,7 +119,7 @@ git clone https://github.com/YOUR_USERNAME/tenstorrent-greyskull-dev.git
 They'll need:
 - Docker installed and user in docker group
 - VS Code with Dev Containers extension
-- Tenstorrent Greyskull e150 hardware (optional for testing)
+- Tenstorrent Grayskull e150 hardware (optional for testing)
 
 ## Updating Repository
 

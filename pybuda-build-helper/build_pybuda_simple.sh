@@ -7,7 +7,7 @@ HOST_USER="baruch"
 HOST_IP="192.168.1.158"
 CONTAINER_NAME="tt-e75-dev"
 CONTAINER_SOURCE="/workspace/tt-buda-source"
-ARCH_NAME="wormhole_b0"
+ARCH_NAME="grayskull"
 
 echo "=========================================="
 echo "PyBuda Build from Source (Simplified)"

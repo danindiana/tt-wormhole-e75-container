@@ -4,7 +4,7 @@
 
 Building PyBuda from source will:
 - ✅ Compile against your exact library versions (yaml-cpp 0.7, boost 1.74)
-- ✅ Ensure compatibility with Wormhole B0 hardware
+- ✅ Ensure compatibility with Grayskull hardware
 - ✅ Resolve C++ ABI incompatibility issues
 - ✅ Give you control over build configuration
 - ✅ Allow debugging if needed
@@ -95,7 +95,7 @@ apt-get install -y python3-dev cmake ninja-build
 If not already built:
 ```bash
 cd /workspace/tt-buda  # or wherever source is located
-make -j8 build_hw ARCH_NAME=wormhole_b0
+make -j8 build_hw ARCH_NAME=grayskull
 ```
 
 Verify:
@@ -112,8 +112,8 @@ cd /workspace/tt-buda/pybuda
 rm -rf build/ dist/ *.egg-info
 
 # Build with architecture specified
-export ARCH_NAME=wormhole_b0
-export BACKEND_ARCH_NAME=wormhole_b0
+export ARCH_NAME=grayskull
+export BACKEND_ARCH_NAME=grayskull
 
 # Option A: Build wheel
 python setup.py bdist_wheel
@@ -145,7 +145,7 @@ python -c "from pybuda import BackendType; print('Backend types:', dir(BackendTy
 ```bash
 # Ensure budabackend is built first
 cd /workspace/tt-buda
-make build_hw ARCH_NAME=wormhole_b0
+make build_hw ARCH_NAME=grayskull
 
 # Set library path
 export LD_LIBRARY_PATH=/workspace/tt-buda/build/lib:$LD_LIBRARY_PATH
@@ -189,8 +189,8 @@ the yaml-cpp 0.7 in your container.
 **Solution**:
 ```bash
 # Explicitly set architecture
-export ARCH_NAME=wormhole_b0
-export BACKEND_ARCH_NAME=wormhole_b0
+export ARCH_NAME=grayskull
+export BACKEND_ARCH_NAME=grayskull
 
 # Verify it's picked up
 echo $ARCH_NAME

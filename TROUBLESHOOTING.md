@@ -259,7 +259,7 @@ make smoke-silicon
 ## Known Limitations
 
 - **Python 3.10 required**: PyBuda breaks on Python 3.12+
-- **Legacy hardware only**: Greyskull e150 (EOL), not compatible with modern TT-Forge
+- **Legacy hardware only**: Grayskull e150 (EOL), not compatible with modern TT-Forge
 - **No simulation**: VERSIM not built; use silicon tests only
 - **Frozen versions**: All software pinned to specific commits; do not upgrade
 - **Hugepages optional**: Warning is cosmetic; performance impact minimal for testing

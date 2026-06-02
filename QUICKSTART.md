@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Ubuntu 22.04 LTS (host)
-- Tenstorrent Greyskull e150 card(s) installed
+- Tenstorrent Grayskull e75 or e150 card(s) installed
 - Docker installed and user in docker group
 - VS Code with Dev Containers extension
 
@@ -123,7 +123,7 @@ If you encounter issues, see `TROUBLESHOOTING.md` for solutions to:
 ## Version Information
 
 - **Environment**: Ubuntu 22.04, Docker 28.2.2, Python 3.10
-- **Hardware**: Tenstorrent Greyskull e150 (ARCH_NAME=grayskull)
+- **Hardware**: Tenstorrent Grayskull e75 / e150 (ARCH_NAME=grayskull)
 - **Software Stack**:
   - tt-budabackend: `e4e03c8c2bf07af4ca5b878808408b89fd27778d`
   - PyBuda: v0.19.3 (legacy)
@@ -135,13 +135,13 @@ If you encounter issues, see `TROUBLESHOOTING.md` for solutions to:
 ⚠️ **This is a FROZEN legacy stack**
 - Python 3.10 required (breaks on 3.12+)
 - Do not upgrade to mainline TT-Forge
-- Greyskull e150 is EOL hardware
+- Grayskull e150 is EOL hardware
 - All versions pinned for reproducibility
 
 ✅ **Verified Working**
 - Container builds successfully
 - tt-budabackend compiles without errors
-- Silicon tests pass on 2x Greyskull e150 cards
+- Silicon tests pass on Grayskull hardware (e75 + e150)
 - Test accuracy: PCC 0.9999, allclose 100%
 
 ---
